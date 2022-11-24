@@ -23,8 +23,22 @@
                                 <input type="number" class="form-control" name="tinggi" required>
                             </div>
                             <div class="mb-3">
+                                <label class="form-label">Hobi <i>(Masukkan 3 Hobi)</i></label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="hobi" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label">Tahun lahir</label>
-                                <input type="text" class="form-control" name="tahun" required>
+                                <input type="number" class="form-control" name="tahun" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
@@ -38,38 +52,38 @@
                     <div class="card-body">
                         <form action="" method="">
                             @isset($data)
-                            <div class="mb-3">
-                                <label class="form-label">Nama</label>
-                                <input type="text" class="form-control" value="{{ $data['nama'] }}" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Berat</label>
-                                <input type="number" class="form-control" value="{{ $data['berat'] }}" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Tinggi</label>
-                                <input type="number" class="form-control" value="{{ $data['tinggi'] }}" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">BMI</label>
-                                <input type="number" class="form-control" value="{{ $data['bmi'] }}" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Status</label>
-                                <input type="text" class="form-control" value="{{ $data['status'] }}" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Hobi</label>
-                                <input type="number" class="form-control" value="" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Umur</label>
-                                <input type="number" class="form-control" value="{{ $data['umur'] }}" readonly>
-                            </div>
-                            <div class="">
-                                <label class="form-label">Konsultasi Gratis</label>
-                                <input type="text" class="form-control" value="" readonly>
-                            </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Nama</label>
+                                    <input type="text" class="form-control" value="{{ $data['nama'] }}" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Berat</label>
+                                    <input type="number" class="form-control" value="{{ $data['berat'] }}" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Tinggi</label>
+                                    <input type="number" class="form-control" value="{{ $data['tinggi'] }}" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">BMI</label>
+                                    <input type="number" class="form-control" value="{{ $data['bmi'] }}" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Status</label>
+                                    <input type="text" class="form-control" value="{{ $data['status'] }}" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Hobi</label>
+                                    <input type="text" class="form-control" value="{{ $data['hobi'] }}" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Umur</label>
+                                    <input type="number" class="form-control" value="{{ $data['umur'] }}" readonly>
+                                </div>
+                                <div class="">
+                                    <label class="form-label">Konsultasi Gratis</label>
+                                    <input type="text" class="form-control" value="{{ $data['konsul'] }}" readonly>
+                                </div>
                             @endisset
                         </form>
                     </div>
