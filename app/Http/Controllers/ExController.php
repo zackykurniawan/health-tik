@@ -1,10 +1,11 @@
+
 <?php
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class BmiController extends Controller
+class BMIController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class BmiController extends Controller
      */
     public function index()
     {
-        //menampilkan halaman dashboard
+        // Menampilkan Halaman BMI
         return view('bmi.tampil');
     }
 
@@ -35,21 +36,22 @@ class BmiController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $result = new konsul($request->tahun, $request->berat, $request->tinggi);
-
-        $data = [
+        // Mengambil Parameter di Kelas
+        $hasil = new Konsul($request->tahun, $request->tinggi, $request->berat);
+        // Menyimpan Data dari Form
+        $yeah = [
             'nama' => $request->nama,
-            'hobi' => $request->hobi,
-            'berat' => $request->berat,
             'tinggi' => $request->tinggi,
-            'bmi' => $result->hitungBMI(),
-            'status' => $result->status(),
-            'umur' => $result->hitungUmur(),
-            'konsultasi' => $result->konsultasi(),
+            'berat' => $request->berat,
+            'hobi' => $request->hobi,
+            'tahun' => $hasil->hitungUmur(),
+            'konsultasi' => $hasil->konsultasi(),
+            'hasilbmi' => $hasil->hitungBMI(),
+            'statusbmi' => $hasil->status(),
         ];
 
-        return view('bmi.tampil', compact('data'));
+        // Kembali ke Halaman dan Menampilkan data dari Variabel yeah
+        return view('BMI.tampil', compact('yeah'));
     }
 
     /**
@@ -98,91 +100,62 @@ class BmiController extends Controller
     }
 }
 
-class hitung
-{
-    public function __construct($tahun, $berat, $tinggi)
+class Hitung {
+
+    // Menginisialisasi Variabel 
+    public function __construct($tahun, $tinggi, $berat)
     {
         $this->tahun = $tahun;
-        $this->berat = $berat;
         $this->tinggi = $tinggi / 100;
-    }
-
-    public function hitungBMI()
-    {
-        return $this->berat / ($this->tinggi * $this->tinggi);
+        $this->berat = $berat;
     }
 
     public function hitungUmur()
     {
+        // Menghitung Umur dengan rumus Jika 2022 dikurang Tahun yang akan diisi
         return 2022 - $this->tahun;
     }
+
+    public function hitungBMI()
+    {
+        // Menghitung BMI dengan rumus Isi data Berat dibagi Isi Data Tinggi
+        return $this->berat / ($this->tinggi * $this->tinggi);
+    }
+
 }
 
-class konsul extends hitung
-{
-    public function status()
-    {
-        $hbmi = $this->hitungBMI();
+class Konsul extends Hitung {
 
-        if ($hbmi < 18.5) {
+    // Status menggunakan Rumus Hasil Hitung BMI
+    public function status(){
+        if($this->hitungBMI() >= 17 && $this->hitungBMI() <= 18.4){
             return 'Kurus';
-        } elseif ($hbmi >= 18.5 && $hbmi <= 22.9) {
+        } else if ($this->hitungBMI() >= 18.5  && $this->hitungBMI() <= 22.9){
             return 'Normal';
-        } elseif ($hbmi > 22.9 && $hbmi <= 29.9) {
+        } else if ($this->hitungBMI() >= 22.9  && $this->hitungBMI() <= 29.9){
             return 'Gemuk';
-        } elseif ($hbmi > 30) {
+        } else if ($this->hitungBMI() >= 30) {
             return 'Obesitas';
         } else {
-            return 'tidak terdaftar';
+            return 'Silahkan Diisi';
         }
     }
 
+    // Konsultasi menggunakan Rumus Hasil Hitung Umur dan Hasil Hitung BMI
     public function konsultasi()
     {
         if($this->hitungUmur() >= 17 && $this->hitungBMI() >= 30){
             return 'Anda Mendapatkan Konsultasi Gratis';
-        } else {
+        } else if ($this->hitungUmur() <= 17 && $this->hitungBMI() >= 30){
+            return 'Anda masih belum memenuhi Target';
+        } else if ($this->hitungUmur() >= 17 && $this->hitungBMI() <= 30){
+            return 'Anda masih belum memenuhi persyaratan';
+        } else if ($this->hitungUmur() <= 17 && $this->hitungBMI() <= 30) {
             return 'Anda tidak mendapatkan Konsultasi Gratis';
+        } else {
+            return 'Silahkan Diisi';
         }
     }
+
+   
 }
-
-// class umur
-// {
-
-//     public function __construct($tahun)
-//     {
-//         $this->tahun = 2022 - $tahun;
-//     }
-
-//     public function hitungUmur()
-//     {
-//         return $this->tahun;
-//     }
-// }
-
-// class konsultasi extends umur{
-
-//     public function __construct($dbmi)
-//     {
-//         $this->bmi = $dbmi;
-//     }
-
-//     public function hitung()
-//     {
-//         if ($this->hitungUmur() > 17) {
-//             return 'Dewasa';
-//         }else{
-//             return 'Belum Dewasa';
-//         }
-//     }
-
-//     public function konsul()
-//     {
-//         if ($this->hitung() == 'Dewasa' && $this->status() == 'Obesitas') {
-//             return 'Anda bisa mendapatkan Konsultasi Gratis';
-//         }else{
-//             return 'Anda tidak bisa mendapatkan Konsultasi Gratis';
-//         }
-//     }
-// }

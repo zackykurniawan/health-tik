@@ -26,6 +26,11 @@
                         <div class="mb-3">
                             <label class="form-label">Role</label>
                             <input type="text" class="form-control" name="role" required value="{{ $user->role }}">
+                            {{-- <select class="form-select" name="role">
+                                <option selected>Pilih role</option>
+                                <option value="admin" @selected($user->role=='admin')>admin</option>
+                                <option value="editor" @selected($user->role=='editor')>editor</option>
+                            </select> --}}
                         </div>
         
                         <button type="submit" class="btn btn-primary">Submit</button>

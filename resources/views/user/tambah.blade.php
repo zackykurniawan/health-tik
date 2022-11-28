@@ -25,6 +25,11 @@
                         <div class="mb-3">
                             <label class="form-label">Role</label>
                             <input type="text" class="form-control" name="role" required>
+                            {{-- <select class="form-select" name="role">
+                                <option selected>Pilih role</option>
+                                <option value="admin">admin</option>
+                                <option value="editor">editor</option>
+                            </select> --}}
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

@@ -41,10 +41,12 @@
                                 <input type="number" class="form-control" name="tahun" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
+                            <a href="/bmi" type="button" class="btn btn-success">Refresh</a>
                         </form>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">Tampilan Data</div>
@@ -82,13 +84,14 @@
                                 </div>
                                 <div class="">
                                     <label class="form-label">Konsultasi Gratis</label>
-                                    <input type="text" class="form-control" value="{{ $data['konsul'] }}" readonly>
+                                    <input type="text" class="form-control" value="{{ $data['konsultasi'] }}" readonly>
                                 </div>
                             @endisset
                         </form>
                     </div>
                 </div>
             </div>
+
         </div>
         {{-- <div class="row">
             <div class="col-md-12 mt-4">

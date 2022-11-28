@@ -85,6 +85,24 @@ class UserController extends Controller
         //mengedit data user
         $user->update($request->all());
         return redirect('user');
+
+        // // Jika passwordnya ada maka dilakukan perubahan password
+        // if($user->password){
+        //     $user->update([
+        //         'name' => $request->name,
+        //         'email' => $request->email,
+        //         'password' => Hash::make($request->password), // Password yang berubah string dirubah dengan melakukan Hash
+        //         'role' => $request->role,
+        //     ]);
+        // } else {
+        //     // Jika tidak ada perubahan Password maka langsung menyimpan data ini saja
+        //     $user->update([
+        //         'name' => $request->name,
+        //         'email' => $request->email,
+        //         'role' => $request->role,
+        //     ]);
+        // }
+        // return redirect('user');
     }
 
     /**
